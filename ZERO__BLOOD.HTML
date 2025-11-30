@@ -1,0 +1,455 @@
+<<<<<<< HEAD
+// ...existing code...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZERO__BLOOD — Membership</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-1: #0f172a;
+      --card: #0b1220;
+      --accent: #7c3aed;
+      --accent-2: #06b6d4;
+      --muted: #94a3b8;
+      --glass: rgba(255,255,255,0.04);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background: linear-gradient(180deg,#071126 0%, #0b0820 55%, #0b0412 100%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:32px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .wrap{
+      width:min(1100px,96%);
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:24px;
+      align-items:start;
+    }
+
+    header{
+      grid-column:1 / -1;
+      text-align:center;
+      margin-bottom:4px;
+    }
+    header h1{
+      margin:0;
+      font-size:20px;
+      letter-spacing:1px;
+      font-weight:800;
+      color:linear-gradient(#9b5cff,#00d4ff);
+    }
+    header p{
+      margin:6px 0 18px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:14px;
+      padding:20px;
+      box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+      border:1px solid rgba(255,255,255,0.04);
+    }
+
+    /* main panel */
+    .panel-main{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+    .search {
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .search input[type="text"]{
+      flex:1;
+      padding:14px 16px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.06);
+      background:var(--glass);
+      color:inherit;
+      font-size:15px;
+      outline:none;
+    }
+    .search input[type="text"]::placeholder{color:#9aa7bf}
+    .btn {
+      display:inline-grid;
+      place-items:center;
+      padding:12px 18px;
+      border-radius:12px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:white;
+      font-weight:600;
+      border:none;
+      cursor:pointer;
+      transition:transform .12s ease, box-shadow .12s ease;
+      box-shadow:0 6px 18px rgba(124,58,237,0.18);
+    }
+    .btn:active{transform:translateY(1px)}
+    .info{
+      padding:14px;
+      border-radius:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      color:#e9eef9;
+      font-size:15px;
+      min-height:56px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      justify-content:center;
+    }
+    .info .name{
+      font-weight:700;
+      color:#fff;
+      letter-spacing:.6px;
+    }
+    .info .uid{
+      color:var(--muted);
+      font-weight:600;
+      font-size:13px;
+    }
+
+    /* members list */
+    .members{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+      gap:12px;
+    }
+    .member{
+      padding:12px;
+      border-radius:12px;
+      background:linear-gradient(180deg, rgba(124,58,237,0.12), rgba(6,182,212,0.02));
+      text-align:center;
+      font-weight:600;
+      color:#fff;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .muted{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* sidebar */
+    .sidebar{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    .media-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+    }
+    .media-grid img,
+    .media-grid video{
+      width:100%;
+      height:120px;
+      object-fit:cover;
+      border-radius:10px;
+      display:block;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    footer{
+      grid-column:1 / -1;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+      margin-top:6px;
+    }
+
+    /* responsive */
+    @media (max-width:880px){
+      .wrap{grid-template-columns:1fr}
+      .sidebar{order:2}
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      background-color:rgb(241, 236, 241);
+    }
+    #ZRBh{
+      text-align: center;
+      color: blueviolet;
+    }
+     
+    #names{
+      margin: 10px;
+      background-color: aqua;
+      border-radius: 30px;
+      padding: 10px;
+      font-size: 23px;
+      border-style:double;
+      border-color: blue;
+      border-width: 7px;
+      size: 70%;
+      max-width: 60%;
+
+    }
+    #click{
+      padding: 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      color: aqua;
+      background-color: darkturquoise;
+      transition: background-color 0.5s;
+    }
+    #click:hover{
+      background-color: blue;
+    }
+    .INTERACTION{
+      max-width: 100%;
+      max-height: 500px;
+      background-color:rgb(237, 211, 254);
+      border-radius: 40px;
+    }
+    .image{
+      width: 100%;
+      border-radius: 40px;
+      filter: brightness(0.9) opacity(0.5);
+      
+    }
+    #details{
+      color: rgb(165, 42, 42);
+      font-family:fantasy;
+    }
+    h1{
+    color: rgb(0, 139, 253);
+    text-align: center;
+    }
+    .intro{
+      color: rgb(255, 0, 0);
+    }
+    .list{
+       max-width: 100%;
+      max-height: 500px;
+      background-color:rgb(237, 211, 254);
+      border-radius: 40px;
+>>>>>>> 199655b449e5d02394b2a46e676edc90c452e775
+    }
+  </style>
+</head>
+<body>
+<<<<<<< HEAD
+  <div class="wrap">
+    <header>
+      <h1>ZERO__BLOOD MEMBERSHIP RECTIFICATION</h1>
+      <p class="muted">Enter a player's account name to verify membership and view UID</p>
+    </header>
+
+    <main class="card panel-main" aria-labelledby="main-title">
+      <h2 id="main-title" style="margin:0 0 6px;color:#cfe9ff;font-size:16px">Verification</h2>
+
+      <div class="search" role="search">
+        <label for="names" class="visually-hidden" style="position:absolute;height:1px;width:1px;overflow:hidden">Player name</label>
+        <input id="names" type="text" placeholder="Enter account name (e.g. neymar)" autocomplete="off" />
+        <button id="click" class="btn" aria-label="Verify member">Verify</button>
+      </div>
+
+      <div id="result" class="info" aria-live="polite">
+        <div id="details" class="name">No member selected</div>
+        <div id="uid" class="uid muted">UID will appear here</div>
+      </div>
+
+      <section>
+        <h3 style="margin:6px 0 10px;color:#cbdff6">Known guild members</h3>
+        <div class="members" id="membersList" aria-hidden="false">
+          <div class="member">neymar</div>
+          <div class="member">bottega</div>
+          <div class="member">xenon</div>
+          <div class="member">demon</div>
+          <div class="member">divix</div>
+        </div>
+        <p class="muted" style="margin-top:10px;font-size:13px"><strong>Note:</strong> Use the exact in-game alias shown above to verify.</p>
+      </section>
+    </main>
+
+    <aside class="card sidebar" aria-label="Gallery and extras">
+      <div>
+        <h3 style="margin:0 0 8px 0;color:#cfe9ff">Taariq's playground</h3>
+        <p class="muted" style="margin:0 0 12px 0">Graphics, web development, account sales — updates and promos.</p>
+      </div>
+
+      <div class="media-grid">
+        <img src="WhatsApp Image 2025-10-26 at 00.27.33_d4200b15.jpg" alt="media1"/>
+        <img src="WhatsApp Image 2025-10-25 at 14.07.48_29ba1fb5.jpg" alt="media2"/>
+        <img src="WhatsApp Image 2025-10-26 at 22.53.04_374be098.jpg" alt="media3"/>
+        <img src="WhatsApp Image 2025-10-26 at 23.22.26_99c977b1.jpg" alt="media4"/>
+      </div>
+
+      <div style="margin-top:8px">
+        <video controls muted playsinline>
+          <source src="WhatsApp Video 2025-11-07 at 01.16.51_6fa708cd.mp4" type="video/mp4">
+          Your browser does not support the video element.
+        </video>
+      </div>
+    </aside>
+
+    <footer class="muted">Made with care • ZERO__BLOOD</footer>
+  </div>
+
+  <script>
+    // improved mapping and input handling
+    const click = document.querySelector('#click');
+    const input = document.getElementById('names');
+    const detailsEl = document.getElementById('details');
+    const uidEl = document.getElementById('uid');
+
+    const members = {
+      neymar: { name: 'ZRB__NEYMAR', uid: '299913820123' },
+      bottega:{ name:'ZRB__BOTTEGA', uid:'393910293021' },
+      xenon:  { name:'ZRB__XENON', uid:'299239938374' },
+      demon:  { name:'ZRB__DEMON', uid:'0293990020' },
+      divix:  { name:'ZRB__DIVIX', uid:'542260063210' }
+    };
+
+    function showResult(key){
+      const info = members[key];
+      if(info){
+        detailsEl.textContent = 'ZRB__NAME: ' + info.name;
+        uidEl.textContent = 'ZRB__UID: ' + info.uid;
+      } else {
+        detailsEl.textContent = 'Not a member of ZERO__BLOOD';
+        uidEl.textContent = 'No UID found';
+      }
+    }
+
+    click.addEventListener('click', () => {
+      const raw = input.value.toLowerCase().trim();
+      showResult(raw);
+      input.value = '';
+      input.focus();
+    });
+
+    // allow Enter key to trigger
+    input.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter'){ click.click(); }
+    });
+
+    // optional: click member tile to populate
+    document.getElementById('membersList').addEventListener('click', (e) => {
+      if(e.target.classList.contains('member')){
+        const name = e.target.textContent.trim().toLowerCase();
+        showResult(name);
+      }
+    });
+  </script>
+</body>
+</html>
+// ...existing code...
+=======
+  <h1 id="ZRBh">
+    ZERO__BLOOD MEMBERSHIP RECTIFICATION HOME
+  </h1>
+  <h2>
+    This page is to show that you are a known member of the ZERO__BLOOD
+  </h2>
+
+  <div class="INTERACTION"><br><br>
+  <label for="name"> Enter players account name:</label><br>
+  <input type="text" placeholder="accoun name" id="names">
+  <button id="click">click</button>
+  <p id="details"></p>
+  <p id="uid"></p>
+  <img  class="image"src="image.png">
+  </div>
+  <div class="list">
+    <h2>
+      Names of known guild members 
+    </h2>
+    <p>
+      <mark>note</mark> that players verification must be copied from this below list
+    </p>
+    <p>
+      neymar <br>
+      bottega <br>
+      xenon <br>
+      demon <br>
+      divix <br>
+    </p>
+  </div>
+  <div>
+  <h1>
+      Taariq's play ground
+    </h1>
+    <h3>
+      Page info:
+    </h3>
+    <p class="intro">
+      This platform is to an interactive platform, to advertise interact and to update all youth about the latest about the world kiddish lively things 
+    </p>
+  </div>
+  
+  <div>
+    
+  </div>
+
+  <script>
+  const click=document.querySelector('#click')
+
+
+const zrb_names = ['ZRB__NEYMAR','ZRB__BOTTEGA','ZRB__XENON','ZRB__DEMON','ZRB__DIVIX']
+const zrb_uid=['299913820123','393910293021','299239938374','0293990020','542260063210']
+
+click.onclick=function (){
+  
+let nam=document.getElementById('names').value
+  let names=  nam.toLowerCase() .trim(); 
+ let zrb__details;
+ let uid;
+  
+   if (names=='xenon'){
+    zrb__details=`ZRB__NAMES: ${zrb_names[2]}`
+    uid=`ZRB__UID: ${zrb_uid[1]}`
+  }
+  else if (names=='neymar'){
+    zrb__details=`ZRB__NAMES: ${zrb_names[0]}`
+    uid=`ZRB__UID: ${zrb_uid[2]}`
+  }
+  else if (names=='bottega'){
+    zrb__details=`ZRB__NAMES: ${zrb_names[1]}`
+    uid=`ZRB__UID: ${zrb_uid[3]}`
+  }
+  else if (names=='demon'){
+    zrb__details=`ZRB__NAMES: ${zrb_names[3]}`
+    uid=`ZRB__UID: ${zrb_uid[0]}`
+  }
+  else if (names=='divix'){
+    zrb__details=`ZRB__NAMES: ${zrb_names[4]}`
+    uid=`ZRB__UID: ${zrb_uid[4]}`
+  }
+  else{
+    zrb__details='not a member of ZERO__BLOOD'
+    uid='no uid found'
+  }
+  document.querySelector('#details').textContent=zrb__details;
+  document.getElementById('uid').innerHTML=uid
+  names.value='';
+}
+
+    
+  </script>
+</body>
+</html>
+>>>>>>> 199655b449e5d02394b2a46e676edc90c452e775
