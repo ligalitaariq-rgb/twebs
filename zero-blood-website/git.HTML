@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ZERO__BLOOD — Demo Bets</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-a: #7b2ff7; /* purple */
+      --bg-b: #2ac9f5; /* teal */
+      --card: rgba(255,255,255,0.06);
+      --glass: rgba(255,255,255,0.05);
+      --text: #06263a;
+      --accent: #ffdd57;
+      --muted: rgba(3,20,30,0.6);
+      --success: #06c270;
+      --danger: #ff5c6c;
+      --glass-white: rgba(255,255,255,0.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      background: linear-gradient(135deg,var(--bg-a),var(--bg-b));
+      color:var(--text);
+      padding:24px;
+      display:flex;
+      justify-content:center;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .wrap{
+      width:min(1100px,96%);
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:20px;
+      align-items:start;
+    }
+
+    header{
+      grid-column:1 / -1;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:12px 18px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border-radius:12px;
+      box-shadow: 0 6px 20px rgba(10,10,10,0.08);
+    }
+    header .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo{
+      width:44px;
+      height:44px;
+      border-radius:10px;
+      background: linear-gradient(135deg,#ffd1ff,#82f0ff);
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      color:#07263a;
+      font-size:18px;
+    }
+    header h1{
+      font-size:18px;
+      margin:0;
+      color:#e9f7ff;
+      text-shadow:0 2px 8px rgba(0,0,0,0.12);
+    }
+    header .balance{
+      padding:8px 12px;
+      border-radius:10px;
+      background:var(--glass-white);
+      color:#08303d;
+      font-weight:700;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    /* main card */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border-radius:12px;
+      padding:16px;
+      box-shadow: 0 10px 30px rgba(12,12,20,0.12);
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    .panel-main{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .markets{
+      display:grid;
+      gap:10px;
+    }
+    .match{
+      padding:12px;
+      border-radius:10px;
+      background:rgba(255,255,255,0.02);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .teams{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:170px;
+    }
+    .team-name{
+      font-weight:700;
+      color:#ffffff;
+      font-size:15px;
+    }
+    .time{
+      color:var(--muted);
+      font-size:13px;
+    }
+    .odds{
+      display:flex;
+      gap:8px;
+    }
+    .odd {
+      padding:8px 10px;
+      border-radius:8px;
+      min-width:64px;
+      text-align:center;
+      cursor:pointer;
+      user-select:none;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+      color:#fff;
+      font-weight:700;
+    }
+    .odd.selected{
+      outline:3px solid rgba(255,255,255,0.08);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      transform:translateY(-3px);
+      background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    }
+
+    /* right column (bet slip) */
+    .sidebar{
+      position:sticky;
+      top:24px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      padding:14px;
+      min-height:120px;
+    }
+    .bet-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
+    }
+    .bets-list{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      max-height:280px;
+      overflow:auto;
+      padding-right:6px;
+    }
+    .bet-line{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
+      padding:8px;
+      border-radius:8px;
+      background: rgba(255,255,255,0.02);
+      color: #fff;
+    }
+    .bet-info{
+      font-size:13px;
+      color: #e9f7ff;
+      font-weight:600;
+    }
+    .bet-actions{
+      display:flex;
+      gap:6px;
+      align-items:center;
+    }
+    input[type="number"]{
+      width:100%;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.03);
+      background:rgba(255,255,255,0.02);
+      color:inherit;
+      outline:none;
+      font-weight:600;
+    }
+    .place-btn{
+      display:block;
+      width:100%;
+      padding:10px 12px;
+      border-radius:10px;
+      background:linear-gradient(90deg,#ffb86b,#ff6b95);
+      color:#07263a;
+      font-weight:800;
+      border:none;
+      cursor:pointer;
+      box-shadow:0 8px 16px rgba(255,255,255,0.06);
+    }
+    .small{
+      font-size:13px;
+      color:var(--muted);
+    }
+    .badge{
+      padding:4px 8px;
+      border-radius:8px;
+      font-size:13px;
+      background:rgba(255,255,255,0.03);
+      color:#fff;
+      font-weight:700;
+    }
+
+    .notice{
+      padding:10px;
+      border-radius:10px;
+      text-align:center;
+      font-size:13px;
+      color:#022;
+      background:linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,255,255,0.92));
+    }
+
+    footer{
+      grid-column:1 / -1;
+      text-align:center;
+      color:rgba(255,255,255,0.8);
+      margin-top:6px;
+      font-size:13px;
+    }
+
+    @media (max-width:880px){
+      .wrap{grid-template-columns: 1fr; padding:12px;}
+      .sidebar{position:static}
+      header{flex-direction:column; align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">ZB</div>
+        <div>
+          <h1>ZERO__BLOOD — Demo Bets</h1>
+          <div class="small">Beautiful colors · Demo mode only</div>
+        </div>
+      </div>
+      <div class="balance">Balance: <strong id="balance">1000.00</strong> USD</div>
+    </header>
+
+    <main class="card panel-main" aria-labelledby="main-title">
+      <div>
+        <h2 id="main-title" style="margin:6px 0 12px; color:#fff;">Available Markets</h2>
+        <div class="markets" id="markets"></div>
+      </div>
+
+      <div class="card" style="background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));">
+        <h3 style="margin:0 0 10px; color:#fff;">Quick Filters</h3>
+        <div style="display:flex;gap:8px;">
+          <button id="filterAll" class="badge">All</button>
+          <button id="filterSoon" class="badge">Starting Soon</button>
+          <button id="clearBtn" class="badge">Clear Selections</button>
+        </div>
+      </div>
+    </main>
+
+    <aside class="card sidebar" aria-label="Bet slip and extras">
+      <div class="bet-header">
+        <div style="display:flex;flex-direction:column;">
+          <div style="font-size:14px;font-weight:800;color:#05263a">Bet Slip</div>
+          <div id="selectedCount" class="small">0 selections</div>
+        </div>
+        <div class="badge" id="totalOdds">x1.00</div>
+      </div>
+
+      <div class="bets-list" id="betsList"></div>
+
+      <label class="small">Stake (USD)</label>
+      <input id="stake" type="number" min="1" value="10" />
+
+      <div style="display:flex;gap:8px;margin-top:8px;">
+        <div style="flex:1;">
+          <div class="small">Potential Payout</div>
+          <div style="font-weight:800;font-size:16px;" id="payout">$0.00</div>
+        </div>
+        <div style="width:120px;">
+          <div class="small">Status</div>
+          <div id="mode" class="badge">Demo</div>
+        </div>
+      </div>
+
+      <button id="placeBtn" class="place-btn">Place Bet (Demo)</button>
+
+      <div style="margin-top:10px;">
+        <div class="small muted" style="color:#f8fbff">Bet history (demo).</div>
+        <div id="history" class="small" style="margin-top:6px; max-height:120px; overflow:auto;"></div>
+      </div>
+    </aside>
+
+    <footer class="card" style="background:transparent; text-align:center; color:#ffffff7f; border-radius:12px;">
+      This is a demo platform. Not for real-money betting. Ensure legal compliance for production.
+    </footer>
+  </div>
+
+  <script>
+    // Demo configuration
+    const startingBalance = 1000.00;
+    let balance = startingBalance;
+    const marketsEl = document.getElementById('markets');
+    const betsListEl = document.getElementById('betsList');
+    const totalOddsEl = document.getElementById('totalOdds');
+    const balanceEl = document.getElementById('balance');
+    const stakeInput = document.getElementById('stake');
+    const payoutEl = document.getElementById('payout');
+    const placeBtn = document.getElementById('placeBtn');
+    const historyEl = document.getElementById('history');
+    const selectedCountEl = document.getElementById('selectedCount');
+    const clearBtn = document.getElementById('clearBtn');
+
+    // Example demo matches
+    const matches = [
+      {id:1, teams:"Lions vs Eagles", time:"Live", odds:{home:1.85, draw:3.50, away:2.40}},
+      {id:2, teams:"Tigers vs Sharks", time:"12:45", odds:{home:1.72, draw:3.60, away:2.50}},
+      {id:3, teams:"Bears vs Packers", time:"14:00", odds:{home:1.90, draw:3.25, away:2.80}},
+      {id:4, teams:"Giants vs Jets", time:"16:30", odds:{home:2.10, draw:3.10, away:2.40}},
+      {id:5, teams:"Dolphins vs Ravens", time:"19:00", odds:{home:1.75, draw:3.40, away:2.60}},
+    ];
+
+    function updateMarketsDisplay(filteredMatches = matches){
+      marketsEl.innerHTML = '';
+      filteredMatches.forEach(match => {
+        const matchEl = document.createElement('div');
+        matchEl.className = 'match';
+        matchEl.innerHTML = `
+          <div class="teams">
+            <div class="team-name">${match.teams.split(' vs ')[0]}</div>
+            <div class="team-name">${match.teams.split(' vs ')[1]}</div>
+          </div>
+          <div class="time">${match.time}</div>
+          <div class="odds">
+            <div class="odd" data-type="home">${match.odds.home}</div>
+            <div class="odd" data-type="draw">${match.odds.draw}</div>
+            <div class="odd" data-type="away">${match.odds.away}</div>
+          </div>
+        `;
+        marketsEl.appendChild(matchEl);
+      });
+    }
+
+    updateMarketsDisplay();
+
+    // Filter buttons
+    document.getElementById('filterAll').addEventListener('click', () => {
+      document.querySelectorAll('.badge').forEach(b => b.classList.remove('selected'));
+      document.getElementById('filterAll').classList.add('selected');
+      updateMarketsDisplay();
+    });
+
+    document.getElementById('filterSoon').addEventListener('click', () => {
+      document.querySelectorAll('.badge').forEach(b => b.classList.remove('selected'));
+      document.getElementById('filterSoon').classList.add('selected');
+      const soonMatches = matches.filter(m => m.time !== "Live");
+      updateMarketsDisplay(soonMatches);
+    });
+
+    clearBtn.addEventListener('click', () => {
+      document.querySelectorAll('.badge').forEach(b => b.classList.remove('selected'));
+      updateMarketsDisplay();
+    });
+
+    // Bet slip functionality
+    let bets = [];
+    function updateBetsDisplay(){
+      betsListEl.innerHTML = '';
+      bets.forEach((bet, index) => {
+        const betEl = document.createElement('div');
+        betEl.className = 'bet-line';
+        betEl.innerHTML = `
+          <div class="bet-info">${bet.teams} - ${bet.type}</div>
+          <div class="bet-actions">
+            <div class="odd">${bet.odds}</div>
+            <button class="remove-btn" aria-label="Remove bet">✖</button>
+          </div>
+        `;
+        betsListEl.appendChild(betEl);
+
+        // Remove bet functionality
+        betEl.querySelector('.remove-btn').addEventListener('click', () => {
+          bets = bets.filter((_, i) => i !== index);
+          updateBetsDisplay();
+          updateBalance();
+        });
+      });
+    }
+
+    function updateBalance(){
+      const totalStake = bets.length > 0 ? bets.reduce((sum, bet) => sum + bet.stake, 0) : 0;
+      const totalOdds = bets.length > 0 ? bets.reduce((prod, bet) => prod * bet.odds, 1) : 1;
+      const potentialPayout = (totalStake * totalOdds).toFixed(2);
+      payoutEl.textContent = `$${potentialPayout}`;
+      totalOddsEl.textContent = `x${totalOdds.toFixed(2)}`;
+      selectedCountEl.textContent = `${bets.length} selections`;
+    }
+
+    // Event delegation for dynamic content
+    marketsEl.addEventListener('click', (e) => {
+      if(e.target.classList.contains('odd')){
+        const oddEl = e.target;
+        const matchEl = oddEl.closest('.match');
+        const teams = matchEl.querySelector('.teams').textContent.trim();
+        const type = oddEl.getAttribute('data-type');
+        const odds = parseFloat(oddEl.textContent);
+
+        // Toggle bet selection
+        if(oddEl.classList.contains('selected')){
+          oddEl.classList.remove('selected');
+          bets = bets.filter(bet => bet.teams !== teams || bet.type !== type);
+        } else {
+          oddEl.classList.add('selected');
+          bets.push({ teams, type, odds, stake: parseFloat(stakeInput.value) });
+        }
+
+        updateBetsDisplay();
+        updateBalance();
+      }
+    });
+
+    // Stake input handling
+    stakeInput.addEventListener('input', (e) => {
+      const value = parseFloat(e.target.value);
+      if(isNaN(value) || value <= 0){
+        e.target.value = 1;
+      }
+      // Update stakes in bets array
+      bets = bets.map(bet => ({ ...bet, stake: value }));
+      updateBetsDisplay();
+      updateBalance();
+    });
+
+    // Place bet button (demo)
+    placeBtn.addEventListener('click', () => {
+      if(bets.length === 0){
+        alert('Please select at least one bet.');
+        return;
+      }
+      // Simulate bet placement
+      const historyItems = bets.map(bet => `${bet.teams} (${bet.type}): ${bet.odds}`).join(' | ');
+      const newHistory = document.createElement('div');
+      newHistory.textContent = `Placed bet on: ${historyItems} - Stake: $${bets[0].stake}`;
+      newHistory.className = 'small';
+      historyEl.prepend(newHistory);
+      balance -= bets[0].stake;
+      balanceEl.textContent = balance.toFixed(2);
+      bets = [];
+      updateBetsDisplay();
+      updateBalance();
+    });
+  </script>
+</body>
+</html>

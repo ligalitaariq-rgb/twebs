@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .image-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: auto;
+}
+
+.animate-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+}
+
+.img1 {
+    animation-delay: 0s;
+}
+
+.img2 {
+    animation-delay: 1s;
+}
+
+.img3 {
+    animation-delay: 2s;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+  </style>
+</head>
+<body>
+  <div class="image-container">
+    <img src="saudah.JPG" class="animate-img img1" alt="Image 1">
+  <img src="sau birthday.JPG" class="animate-img img2" alt="Image 2">
+  <img src="image.png" class="animate-img img3" alt="Image 3">
+  </div>
+
+ <script>
+  const arrey=['taariq','saudah','hudayfah','zaynab']
+  
+  const a='x'
+  if (a=='x'){
+    let b;
+    console.log(b=arrey[2])
+  }
+ </script>
+</body>
+</html>
